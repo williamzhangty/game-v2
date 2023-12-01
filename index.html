@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Faster</title>
+    <link rel="stylesheet" href="./assets/style/index.css" media="all">
+    <script src="./assets/script/index.js" defer"></script>
+</head>
+    <body>
+    <div id="wall"></div>
+    <div id="game-container">
+        <h1>Type faster to see more</h1>
+        <div class="flex"></div>
+            <div id="timer">99</div>
+            <div id="score"> </div>
+        </div>
+            
+        <div id="word-display"></div>
+
+        <!-- The Modal -->
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalText">Some text in the Modal..</p>
+            </div>
+        </div>
+
+        <input type="text" id="word-input" disabled>
+        
+        <div><button id="start-button">Start</button></div>
+        <audio id="clash-sound" src="./assets/audio/bomb.m4a"></audio>
+        <audio id="background-sound" src="./assets/audio/happy.m4a"></audio>   
+    </div>
+    </body>
+</html>

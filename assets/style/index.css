@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; 
+}
+
+.block {
+    width: 120px; 
+    height: 120px; 
+    background: url('../img/tnt.png') no-repeat center center / cover;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: auto; 
+    transition: top 2s, left 2s;
+}
+
+h1 {
+    font-size: 60px;
+    color: #fff;
+    margin: 20px;
+}
+
+.wall-block {
+    width: 50px;
+    height: 50px;
+    background: url('../img/sand.webp') no-repeat center center / cover;
+    position: absolute;
+    bottom: 0;
+    top: auto; 
+}
+
+#button-container {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    background: url('../img/girl2.jpg') no-repeat center center / cover;
+}
+
+#game-container {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+}
+
+input[type="text"] {
+    
+    height: 40px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 30px;
+    width: 15%;
+}
+
+button {
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #00c400;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+#word-display {
+    font-size: 50px;
+    color: #fff;
+    font-weight: 1000;
+    height: 60px;
+}
+
+#timer {
+    color:white;
+    font-size: 70px;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+p {
+    font-size: 35px;
+    color: #fff;
+    margin: 0px;
+}
+
+#score {
+    height: 20px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: skyblue;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+}
+
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
