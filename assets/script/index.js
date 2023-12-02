@@ -27,6 +27,8 @@ class Score {
     }
 }
 
+
+
 function createWall() {
     var wall = document.getElementById("wall");
     var blockWidth = 51; // 50px block + 1px spacing
@@ -35,7 +37,7 @@ function createWall() {
     var totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
     var wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
 
-    for (var layer = 0; layer < 6; layer++) {
+    for (var layer = 0; layer < 5; layer++) {
         for (var i = 0; i < numBlocksPerLayer; i++) {
             var wallBlock = document.createElement("div");
             wallBlock.classList.add("wall-block");
@@ -45,6 +47,9 @@ function createWall() {
         }
     }
 }
+
+
+
 
 function createAndMoveDiv() {
 
@@ -191,3 +196,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+

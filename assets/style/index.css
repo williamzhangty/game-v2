@@ -31,6 +31,7 @@ h1 {
     position: absolute;
     bottom: 0;
     top: auto; 
+    opacity: 0.95;
 }
 
 #button-container {
@@ -70,6 +71,8 @@ button {
     font-size: 20px;
     padding: 10px 20px;
 }
+
+
 
 #word-display {
     font-size: 50px;
@@ -132,3 +135,4 @@ p {
     text-decoration: none;
     cursor: pointer;
 }
+
