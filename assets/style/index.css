@@ -22,6 +22,8 @@ h1 {
     font-size: 60px;
     color: #fff;
     margin: 20px;
+    white-space: nowrapg;
+    overflow: hidden;
 }
 
 .wall-block {
