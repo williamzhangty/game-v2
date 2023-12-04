@@ -91,6 +91,8 @@ function checkCollision(block) {
 
 document.addEventListener("DOMContentLoaded", () => {
     createWall();
+    startButton.addEventListener('click', startGame);
+
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -128,11 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener('click', startGame);
 
     function startGame() {
-        if (isPlaying) return;
+        if (isPlaying) {
+            restartGame();
+            return;
+        }
+        //if (isPlaying) return;
         isPlaying = true;
+        startButton.textContent = 'Restart'; // Change button label to Restart
+
         timeLeft = 99;
         score = 0;
         wordInput.disabled = false;
+        //wordInput.disabled = true;
         wordInput.focus();
         shuffleWords();
         interval = setInterval(updateTimer, 1000);
@@ -141,6 +150,22 @@ document.addEventListener("DOMContentLoaded", () => {
         scoreDisplay.innerHTML = '';
         wordInput.value = '';
     }
+
+    function restartGame() {
+        clearInterval(interval);
+        timeLeft = 99;
+        score = 0;
+        wordInput.disabled = false;
+        wordInput.focus();
+        shuffleWords();
+        interval = setInterval(updateTimer, 1000);
+        // ... rest of the restart logic ...
+        document.querySelectorAll('.block').forEach(block => block.remove());
+        createWall();
+        scoreDisplay.innerHTML = '';
+        wordInput.value = '';
+    }
+    
 
     function shuffleWords() {
         const randomIndex = Math.floor(Math.random() * words.length);
