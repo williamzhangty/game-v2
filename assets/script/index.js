@@ -27,8 +27,6 @@ class Score {
     }
 }
 
-
-
 function createWall() {
     var wall = document.getElementById("wall");
     var blockWidth = 51; // 50px block + 1px spacing
@@ -37,7 +35,7 @@ function createWall() {
     var totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
     var wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
 
-    for (var layer = 0; layer < 5; layer++) {
+    for (var layer = 0; layer < 4; layer++) {
         for (var i = 0; i < numBlocksPerLayer; i++) {
             var wallBlock = document.createElement("div");
             wallBlock.classList.add("wall-block");
@@ -192,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     
         let modalText = document.getElementById('modalText');
-        modalText.innerHTML = `Game Over! <br>Date: ${formattedDate} <br>Hits: ${gameScore.hits} <br>Object: 30 <br>Hit Percentage: ${gameScore.percentage}%`;
+        modalText.innerHTML = `<h1>Game Over !</h1>Date: ${formattedDate} <br>Hits: ${gameScore.hits} <br>Object: 30 <br>Hit Percentage: ${gameScore.percentage}%`;
 
         let modal = document.getElementById('gameOverModal');
         modal.style.display = "block";

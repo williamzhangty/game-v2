@@ -7,8 +7,8 @@ body, html {
 }
 
 .block {
-    width: 120px; 
-    height: 120px; 
+    width: 100px; 
+    height: 100px; 
     background: url('../img/tnt.png') no-repeat center center / cover;
     position: absolute;
     left: 50%;
@@ -19,17 +19,18 @@ body, html {
 }
 
 h1 {
-    font-size: 60px;
-    color: #fff;
+    font-size: 50px;
+    color: #000;
     margin: 20px;
     white-space: nowrapg;
     overflow: hidden;
+    font-family: 'MinecraftFont', sans-serif;
 }
 
 .wall-block {
-    width: 50px;
-    height: 50px;
-    background: url('../img/sand.webp') no-repeat center center / cover;
+    width: 49px;
+    height: 49px;
+    background: url('../img/grass.png') no-repeat center center / cover;
     position: absolute;
     bottom: 0;
     top: auto; 
@@ -47,7 +48,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f0f0f0;
-    background: url('../img/girl2.jpg') no-repeat center center / cover;
+    background: url('../img/background.png') no-repeat center center / cover;
 }
 
 #game-container {
@@ -78,14 +79,16 @@ button {
 
 #word-display {
     font-size: 50px;
-    color: #fff;
+    color: #000;
     font-weight: 1000;
     height: 60px;
 }
 
 #timer {
-    color:white;
+    color:#a3ff4a;
     font-size: 70px;
+    font-family: 'MinecraftFont', sans-serif;
+
 }
 
 img {
@@ -95,7 +98,7 @@ img {
 
 p {
     font-size: 35px;
-    color: #fff;
+    color: #000;
     margin: 0px;
 }
 
@@ -117,7 +120,7 @@ p {
 }
 
 .modal-content {
-    background-color: skyblue;
+    background-color: #eee;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
@@ -125,7 +128,7 @@ p {
 }
 
 .close {
-    color: #fff;
+    color: #000;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -138,3 +141,7 @@ p {
     cursor: pointer;
 }
 
+@font-face {
+    font-family: 'MinecraftFont';
+    src: url('../font/MinecraftTen-VGORe.ttf') format('woff');
+}
