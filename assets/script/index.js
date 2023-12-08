@@ -3,16 +3,16 @@
 let scores = JSON.parse(localStorage.getItem('scores')) || [];
 
 function createWall() {
-    var wall = document.getElementById("wall");
-    var blockWidth = 51; // 50px block + 1px spacing
-    var blockHeight = 51; // 50px block + 1px spacing
-    var numBlocksPerLayer = Math.floor(window.innerWidth / blockWidth);
-    var totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
-    var wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
+    const wall = document.getElementById("wall");
+    const blockWidth = 51; // 50px block + 1px spacing
+    const blockHeight = 51; // 50px block + 1px spacing
+    const numBlocksPerLayer = Math.floor(window.innerWidth / blockWidth);
+    const totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
+    const wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
 
-    for (var layer = 0; layer < 3; layer++) {
-        for (var i = 0; i < numBlocksPerLayer; i++) {
-            var wallBlock = document.createElement("div");
+    for (let layer = 0; layer < 1; layer++) {
+        for (let i = 0; i < numBlocksPerLayer; i++) {
+            const wallBlock = document.createElement("div");
             wallBlock.classList.add("wall-block");
             wallBlock.style.left = (i * blockWidth + wallLeftOffset) + 'px'; // Position with offset
             wallBlock.style.bottom = (layer * blockHeight) + 'px';
@@ -22,26 +22,25 @@ function createWall() {
 }
 
 function createAndMoveDiv() {
-
-    var newDiv = document.createElement("div");
+    const newDiv = document.createElement("div");
     newDiv.classList.add("block");
     document.body.appendChild(newDiv);
 
-    setTimeout(function() {
+    setTimeout(() => {
         newDiv.style.top = "100vh"; // Move downwards
-        let endX = Math.random() * (window.innerWidth - newDiv.offsetWidth);
+        const endX = Math.random() * (window.innerWidth - newDiv.offsetWidth);
         newDiv.style.left = endX + 'px';
         checkCollision(newDiv);
     }, 100);
 }
 
 function checkCollision(block) {
-    var interval = setInterval(function() {
-        var blockRect = block.getBoundingClientRect();
-        var wallBlocks = document.querySelectorAll('.wall-block');
+    const interval = setInterval(() => {
+        const blockRect = block.getBoundingClientRect();
+        const wallBlocks = document.querySelectorAll('.wall-block');
 
-        wallBlocks.forEach(function(wallBlock) {
-            var wallBlockRect = wallBlock.getBoundingClientRect();
+        wallBlocks.forEach((wallBlock) => {
+            const wallBlockRect = wallBlock.getBoundingClientRect();
             
             if (blockRect.right > wallBlockRect.left && blockRect.left < wallBlockRect.right &&
                 blockRect.bottom > wallBlockRect.top && blockRect.top < wallBlockRect.bottom) {
@@ -156,11 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(interval);
         isPlaying = false;
         wordInput.disabled = true;
-    
-        //let currentDate = new Date();
-        //let totalHits = score; 
-        //let gamePercentage = Math.round(100*score/30); 
-        //let gameScore = new Score(currentDate, totalHits, gamePercentage);
+
         let currentDate = new Date();
         let formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         let gamePercentage = Math.round(100 * score / 30); 
@@ -170,10 +165,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         displayScores(); // Update the scoreboard display
 
-       
+        const backgroundAudio = document.getElementById('background-sound');
+        if (backgroundAudio) {
+            backgroundAudio.pause();
+            backgroundAudio.currentTime = 0; // Reset the audio to the start
+        }
 
         let modalText = document.getElementById('modalText');
-        modalText.innerHTML = `<h1>Game Over !</h1>Date: ${formattedDate} <br>Hits: ${score} <br>Object: 30 <br>Hit Percentage: ${gamePercentage}%`;
+        modalText.innerHTML = `<h2>&nbsp;&nbsp;Game Over</h2>Date: ${formattedDate} <br>Hits: ${score} <br>Object: 30 hits <br>Hit Percentage: ${gamePercentage}%`;
 
         let modal = document.getElementById('gameOverModal');
         modal.style.display = "block";
