@@ -1,1 +1,1 @@
-[Game](https://williamzhangty.github.io/game/)
+[Game](https://williamzhangty.github.io/game-v2/)
