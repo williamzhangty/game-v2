@@ -200,17 +200,17 @@ p {
 }
 
 .score-index {
-    flex: 0 0 auto; /* Don't grow, don't shrink, based on content */
+    flex: 0 0 auto; 
 }
 
 .score-hits {
-    flex: 1 1 auto; /* Allow to grow and shrink */
+    flex: 1 1 auto; 
     text-align: center; /* Center the hits */
 }
 
 .score-date {
-    flex: 0 0 auto; /* Don't grow, don't shrink, based on content */
-    text-align: right; /* Align the date to the right */
+    flex: 0 0 auto; 
+    text-align: right; 
 }
 
 #score-text {
