@@ -1,31 +1,6 @@
 'use stirct';
-
-class Score {
-    #date;
-    #hits;
-    #percentage;
-
-    constructor(date, hits, percentage) {
-        this.#date = date;
-        this.#hits = hits;
-        this.#percentage = percentage;
-    }
-
-    // Getter for the date
-    get date() {
-        return this.#date;
-    }
-
-    // Getter for the hits
-    get hits() {
-        return this.#hits;
-    }
-
-    // Getter for the percentage
-    get percentage() {
-        return this.#percentage;
-    }
-}
+// Before all functions, declare the scores array
+let scores = JSON.parse(localStorage.getItem('scores')) || [];
 
 function createWall() {
     var wall = document.getElementById("wall");
@@ -35,7 +10,7 @@ function createWall() {
     var totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
     var wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
 
-    for (var layer = 0; layer < 4; layer++) {
+    for (var layer = 0; layer < 3; layer++) {
         for (var i = 0; i < numBlocksPerLayer; i++) {
             var wallBlock = document.createElement("div");
             wallBlock.classList.add("wall-block");
@@ -45,9 +20,6 @@ function createWall() {
         }
     }
 }
-
-
-
 
 function createAndMoveDiv() {
 
@@ -88,12 +60,6 @@ function checkCollision(block) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    createWall();
-    startButton.addEventListener('click', startGame);
-
-});
-
-document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById('start-button');
     const wordDisplay = document.getElementById('word-display');
     const wordInput = document.getElementById('word-input');
@@ -102,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let score = 0;
 
-    let timeLeft = 99;
+    let timeLeft = 18;
     let isPlaying = false;
     let interval;
     const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
@@ -126,7 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 ];
 
     startButton.addEventListener('click', startGame);
-
+    createWall();
+    displayScores();
+    
     function startGame() {
         if (isPlaying) {
             restartGame();
@@ -136,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isPlaying = true;
         startButton.textContent = 'Restart'; // Change button label to Restart
 
-        timeLeft = 99;
+        timeLeft = 18;
         score = 0;
         wordInput.disabled = false;
         //wordInput.disabled = true;
@@ -147,11 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
         createWall();
         scoreDisplay.innerHTML = '';
         wordInput.value = '';
+        document.getElementById('scoreboard-container').style.display = "none";
     }
 
     function restartGame() {
+        timerDisplay.textContent = 18;
+        timeLeft = 18;
+
         clearInterval(interval);
-        timeLeft = 99;
         score = 0;
         wordInput.disabled = false;
         wordInput.focus();
@@ -162,9 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
         createWall();
         scoreDisplay.innerHTML = '';
         wordInput.value = '';
+        
     }
     
-
     function shuffleWords() {
         const randomIndex = Math.floor(Math.random() * words.length);
         wordDisplay.textContent = words[randomIndex];
@@ -183,14 +154,23 @@ document.addEventListener("DOMContentLoaded", () => {
         isPlaying = false;
         wordInput.disabled = true;
     
+        //let currentDate = new Date();
+        //let totalHits = score; 
+        //let gamePercentage = Math.round(100*score/30); 
+        //let gameScore = new Score(currentDate, totalHits, gamePercentage);
         let currentDate = new Date();
-        let totalHits = score; 
-        let gamePercentage = Math.round(100*score/30); 
-        let gameScore = new Score(currentDate, totalHits, gamePercentage);
-        let formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    
+        let formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        let gamePercentage = Math.round(100 * score / 30); 
+        //let formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+        saveScore(formattedDate, score, gamePercentage);
+        
+        displayScores(); // Update the scoreboard display
+
+       
+
         let modalText = document.getElementById('modalText');
-        modalText.innerHTML = `<h1>Game Over !</h1>Date: ${formattedDate} <br>Hits: ${gameScore.hits} <br>Object: 30 <br>Hit Percentage: ${gameScore.percentage}%`;
+        modalText.innerHTML = `<h1>Game Over !</h1>Date: ${formattedDate} <br>Hits: ${score} <br>Object: 30 <br>Hit Percentage: ${gamePercentage}%`;
 
         let modal = document.getElementById('gameOverModal');
         modal.style.display = "block";
@@ -199,14 +179,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         span.onclick = function() {
             modal.style.display = "none";
+            document.getElementById('scoreboard-container').style.display = "block";
         }
 
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                document.getElementById('scoreboard-container').style.display = "block";
             }
         }
-    
     }
 
     wordInput.addEventListener('input', () => {
@@ -219,4 +200,60 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+function saveScore(date, hits, percentage) {
+    scores.push({ date, hits, percentage });
+
+    // Sort by hits in descending order and keep only the top 10
+    scores.sort((a, b) => b.hits - a.hits);
+    scores.splice(10);
+
+    // Store in localStorage
+    localStorage.setItem('scores', JSON.stringify(scores));
+}
+
+function displayScores() {
+    // Fetch and parse the score data from localStorage
+    let storedScores = localStorage.getItem('scores');
+    let scores = storedScores ? JSON.parse(storedScores) : [];
+    //alert(scores);
+    // Get the scoreboard element
+    const scoreboard = document.getElementById('scoreboard');
+    scoreboard.innerHTML = ''; // Clear existing scoreboard entries
+
+    // Check for and handle an empty scoreboard
+    if (scores.length === 0) {
+        scoreboard.innerHTML = '<p id="score-text">No games have been played.</p>';
+        scoreboard.classList.add('empty'); // Add class for empty state styling
+    } else {
+        scoreboard.classList.remove('empty'); // Remove class if not empty
+        // Only show the top 9 scores
+        scores.slice(0, 9).forEach((score, index) => {
+            
+            const scoreElement = document.createElement('div');
+            scoreElement.classList.add('score-entry');
+            //scoreElement.textContent = `#${index + 1}  ${score.hits}hits ${score.date}`;
+            //scoreboard.appendChild(scoreElement);
+
+            const scoreIndex = document.createElement('div');
+            scoreIndex.classList.add('score-index');
+            scoreIndex.textContent = `#${index + 1}`;
+
+            const scoreHits = document.createElement('div');
+            scoreHits.classList.add('score-hits');
+            scoreHits.textContent = `${score.hits} hits`;
+
+            const scoreDate = document.createElement('div');
+            scoreDate.classList.add('score-date');
+            scoreDate.textContent = `${score.date}`; // Ensure formattedDate is correctly defined
+
+            scoreElement.appendChild(scoreIndex);
+            scoreElement.appendChild(scoreHits);
+            scoreElement.appendChild(scoreDate);
+
+            scoreboard.appendChild(scoreElement);
+            
+        });
+    }
+}
 

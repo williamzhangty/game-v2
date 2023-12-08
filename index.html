@@ -11,12 +11,8 @@
     <div id="wall"></div>
     <div id="game-container">
         <h1>Type faster to see more</h1>
-
-        <div class="flex"></div>
-            <div id="timer">99</div>
-            <div id="score"> </div>
-        </div>
-            
+        <div id="timer">18</div>
+        <div id="score"> </div>
         <div id="word-display"></div>
 
         <!-- The Modal -->
@@ -30,8 +26,14 @@
         <input type="text" id="word-input" disabled>
         
         <div><button id="start-button">Start</button></div>
-        <audio id="clash-sound" src="./assets/audio/bomb.m4a"></audio>
-        <audio id="background-sound" src="./assets/audio/happy.m4a"></audio>   
+        <!-- Scoreboard Container -->
+        <div id="scoreboard-container">
+            <h2>Top Scores</h2>
+            <div id="scoreboard"></div>
+        </div>
+
+        <audio id="clash-sound" src="./assets/audio/bomb.wav"></audio>
+        <audio id="background-sound" src="./assets/audio/happy.wav"></audio>   
     </div>
     </body>
 </html>

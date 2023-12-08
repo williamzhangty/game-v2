@@ -55,6 +55,8 @@ body {
     margin: auto;
     width: 100%;
     padding: 20px;
+
+    
 }
 
 input[type="text"] {
@@ -79,6 +81,7 @@ button {
 
 
 #word-display {
+    margin-top: 20px;
     font-size: 50px;
     color: #000;
     font-weight: 1000;
@@ -110,7 +113,7 @@ p {
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1; 
+    z-index: 10; 
     left: 0;
     top: 0;
     width: 100%; 
@@ -122,10 +125,11 @@ p {
 
 .modal-content {
     background-color: #eee;
-    margin: 15% auto; 
+    margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 30%; 
+    position: relative;
 }
 
 .close {
@@ -145,4 +149,70 @@ p {
 @font-face {
     font-family: 'MinecraftFont';
     src: url('../font/MinecraftTen-VGORe.ttf') format('woff');
+}
+
+/* Scoreboard styles */
+#scoreboard-container {
+    position: fixed; /*or absolute, depending on layout */
+    right: 10px; /* Adjust as necessary for your layout */
+    top: 10px; /* Adjust as necessary for your layout */
+    width: 200px; /* Width of the scoreboard */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* Ensure it's above other elements */
+}
+
+
+
+#scoreboard-container h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#scoreboard {
+    height: 300px; /* Adjust based on your needs */
+    overflow-y: auto; /* Enable scrolling if list is long */
+    margin-top: 10px;
+}
+
+
+/* You might want to add styles for empty state */
+#scoreboard.empty {
+    text-align: center;
+    padding: 50px 0;
+    color: #888;
+}
+
+
+/* Scoreboard entry styles */
+.score-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    border-bottom: 1px solid #eee; /* Separates entries */
+    padding: 5px 0;
+}
+
+.score-index {
+    flex: 0 0 auto; /* Don't grow, don't shrink, based on content */
+}
+
+.score-hits {
+    flex: 1 1 auto; /* Allow to grow and shrink */
+    text-align: center; /* Center the hits */
+}
+
+.score-date {
+    flex: 0 0 auto; /* Don't grow, don't shrink, based on content */
+    text-align: right; /* Align the date to the right */
+}
+
+#score-text {
+    font-size: 12px;
 }
