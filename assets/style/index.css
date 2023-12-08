@@ -175,7 +175,7 @@ p {
 }
 
 #scoreboard {
-    height: 300px; /* Adjust based on your needs */
+    height: 270px; /* Adjust based on your needs */
     overflow-y: auto; /* Enable scrolling if list is long */
     margin-top: 10px;
 }

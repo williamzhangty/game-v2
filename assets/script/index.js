@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         timeLeft = 18;
         score = 0;
+        timerDisplay.textContent = 18;
+
         wordInput.disabled = false;
         //wordInput.disabled = true;
         wordInput.focus();
@@ -120,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function restartGame() {
         timerDisplay.textContent = 18;
+        //alert(timerDisplay.textContent);
         timeLeft = 18;
 
         clearInterval(interval);
