@@ -187,7 +187,7 @@ p {
 #scoreboard {
     height: 270px; /* Adjust based on your needs */
     overflow-y: auto; /* Enable scrolling if list is long */
-    margin-top: 10px;
+    
 }
 
 
@@ -234,5 +234,8 @@ p {
 }
 
 #modalText h2{
-    font-size: 25px;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
