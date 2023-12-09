@@ -1,5 +1,16 @@
 @charset "utf-8";
 
+* {
+    margin: 0;
+    padding: 0;
+    outline:none;
+    border-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+
 body, html {
     height: 100%;
     margin: 0;
@@ -21,7 +32,7 @@ body, html {
 h1 {
     font-size: 50px;
     color: #000;
-    margin: 20px;
+    margin: 17px;
     white-space: nowrapg;
     overflow: hidden;
     font-family: 'MinecraftFont', sans-serif;
@@ -52,11 +63,9 @@ body {
 }
 
 #game-container {
-    margin: auto;
+    
     width: 100%;
     padding: 20px;
-
-    
 }
 
 input[type="text"] {
@@ -65,7 +74,7 @@ input[type="text"] {
     padding: 10px;
     margin-top: 20px;
     font-size: 30px;
-    width: 300px;
+    width: 250px;
     text-align: center;
 }
 
@@ -129,7 +138,7 @@ p {
     margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 30%; 
+    width: 250px; 
     position: relative;
     border-radius: 10px;
 

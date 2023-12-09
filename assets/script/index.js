@@ -10,7 +10,7 @@ function createWall() {
     const totalWallWidth = numBlocksPerLayer * blockWidth; // Total width of the wall
     const wallLeftOffset = (window.innerWidth - totalWallWidth) / 2; // Calculate the left offset
 
-    for (let layer = 0; layer < 1; layer++) {
+    for (let layer = 0; layer < 2; layer++) {
         for (let i = 0; i < numBlocksPerLayer; i++) {
             const wallBlock = document.createElement("div");
             wallBlock.classList.add("wall-block");
