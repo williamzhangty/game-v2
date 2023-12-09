@@ -121,6 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function restartGame() {
         timerDisplay.textContent = 18;
+
+        const backgroundAudio = document.getElementById('background-sound');
+
+        if (backgroundAudio) {
+            backgroundAudio.pause();
+            backgroundAudio.currentTime = 0; // Reset the audio to the start
+            backgroundAudio.play();
+        }
         //alert(timerDisplay.textContent);
         timeLeft = 18;
 
@@ -135,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         createWall();
         scoreDisplay.innerHTML = '';
         wordInput.value = '';
+       
         
     }
     
